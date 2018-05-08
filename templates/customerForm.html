@@ -1,0 +1,24 @@
+{% extends 'l-bar.html' %}
+
+{%  block content %}
+
+<form method="post" action="/web/customer/form?action={{ action }}">
+    {%  csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="hidden" value="{{ action }}" name="action" id="action"/>
+    <input type="submit"/>
+</form>
+
+{#{%  if action == 'edit' %}#}
+{#    <form method="post" action="/student/">#}
+{#        {%  csrf_token %}#}
+{#        <input type="hidden" value="delete" name="action" id="action"/>#}
+{#        <input type="hidden" value="{{ id }}" name="id" id="id"/>#}
+{#        <input type="submit" value="Delete"/>#}
+{#    </form>#}
+{#{% endif %}#}
+
+
+{% endblock %}

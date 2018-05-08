@@ -1,0 +1,76 @@
+{% extends 'l-bar.html' %}
+
+{%  block content %}
+
+<h1>Dashboard</h1>
+
+<h3>Recent Orders</h3>
+
+    <table class="table table-hover table-dark table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">Order</th>
+                <th scope="col">Notes</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <a href="some/path?id={{ order.id }}">
+                      <th scope="col">{{ order.customer }}</th>
+                      <th scope="col">{{ order.name }}</th>
+                      <th scope="col">{{ order.description }}</th> <!-- TODO: put a length filter on this-->
+                    </a>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        {% if recent_prev_link %}
+            <a href="{{ recent_prev_link }}">Previous</a>
+        {% endif %}
+        {% if recent_next_link %}
+            <a class="float-right" href="{{ recent_next_link }}">Next</a>
+        {% endif %}
+    </table>
+
+<h3>Needs Followup</h3>
+
+    <table class="table table-hover table-dark table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">Order</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+{#                <th scope="col">Done</th>#}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for order in followups %}
+                <tr>
+                    <a href="some/path?{{ order.id }}">
+                      <th scope="col">{{ order.customer }}</th>
+                      <th scope="col">{{ order.name }}</th>
+                      <th scope="col">{{ order.customer.phone }}</th> <!-- TODO: put a blank if false filter on this-->
+                      <th scope="col">{{ order.customer.email }}</th> <!-- TODO: put a blank if false filter on this-->
+{#                      <th scope="col"><input type="checkbox" value="false" onclick="somefunction()"/></th>#}
+                    </a>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+    <div class="links">
+        {% if followup_prev_link %}
+            <a href="/web?{{ followup_prev_link }}">Previous</a>
+        {% endif %}
+        {% if followup_next_link %}
+            <a class="float-right" href="/web?{{ followup_next_link }}">Next</a>
+        {% endif %}
+    </div>
+
+{% endblock %}
