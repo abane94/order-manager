@@ -6,7 +6,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 
 # move to services or repos
-from backend.forms import NewCustomerForm
+from backend.forms import NewCustomerForm, EditCustomerForm
 
 # Create your views here.
 home = HomeService()
@@ -23,26 +23,26 @@ def index(req):
 
 class CustomerActions(View):
 
-    def get(self, req):
+    def get(self, req, id=0):
         action = req.GET.get('action', '')
         if action == 'edit':
-            customer = customers.get(id=req.GET['id'])
-            form = NewCustomerForm(instance=customer)  # TODO: should be edit_customer_form, set the current user to the form
-            return render(req, 'customerForm.html', {'form': form, 'action': 'edit', 'id': req.GET['id']})
+            customer = customers.getById(id=self.kwargs['id'])
+            form = EditCustomerForm(instance=customer, initial={'id': customer.id, 'updated': datetime.now().date()})  # TODO: should be edit_customer_form, set the current user to the form
+            return render(req, 'customerForm.html', {'form': form, 'action': 'edit', 'id': id})
         else:
             form = NewCustomerForm(initial={'updated': datetime.now().date(), 'created': datetime.now().date()})  # TODO: set the current user in the form fileds
             return render(req, 'customerForm.html', {'form': form, 'action': 'new'})  # , 'id': req.GET['id']})
 
-    def post(self, req):
+    def post(self, req, id=0):
         # create / update student
         action = req.POST.get('action', '')
         if action == 'edit':
-            customer = customers.getById(id=req.POST['id'])
-            form = NewCustomerForm(req.POST, instance=customer)  # TODO: edit form
+            customer = customers.getById(id=self.kwargs['id'])
+            form = EditCustomerForm(req.POST, instance=customer)  # TODO: edit form
             form.save()
             return redirect('/web')
         elif action == 'delete':
-            customer = customers.getById(id=req.POST['id'])
+            customer = customers.getById(id=self.kwargs['id'])
             customer.delete()
             return redirect('/web')
         else:
@@ -50,3 +50,15 @@ class CustomerActions(View):
             form.save()
             return redirect('/web')
         pass
+
+
+class Customer(View):
+
+    def get(self, req, id=0):
+        id = self.kwargs.get('id', False)
+        if not id:
+            return redirect('/web')
+            pass
+        customer = customers.getById(id)
+
+        return render(req, 'customer.html', {'customer': customer})

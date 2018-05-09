@@ -51,7 +51,7 @@
         <tbody>
             {% for order in followups %}
                 <tr>
-                    <a href="some/path?{{ order.id }}">
+                    <a href="customer?id={{ order.id }}">
                       <th scope="col">{{ order.customer }}</th>
                       <th scope="col">{{ order.name }}</th>
                       <th scope="col">{{ order.customer.phone }}</th> <!-- TODO: put a blank if false filter on this-->

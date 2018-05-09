@@ -1,0 +1,32 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+#main_content {
+    background-color: lightgray;
+    height: 100%;
+    padding: 10px;
+}
+#page-container {
+    padding: 5px 20px;
+    height: 93%;
+    width: 90%;
+    margin: auto;
+    background-color: white;
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.form_container {
+    margin: auto;
+    width: 60%;
+}
+
+form label{
+    font-size: 20pt;
+}

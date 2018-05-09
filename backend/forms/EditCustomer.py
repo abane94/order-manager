@@ -4,11 +4,11 @@ from django.forms import ValidationError
 from datetime import datetime
 
 
-class NewCustomerForm(forms.ModelForm):
+class EditCustomerForm(forms.ModelForm):
     class Meta:
         model = CustomerModel
         fields = "__all__"
-        exclude = ("id", "last_in", "last_user")
+        exclude = ("last_in", "last_user", "created")
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
@@ -26,7 +26,7 @@ class NewCustomerForm(forms.ModelForm):
             # 'last_user': forms.HiddenInput(),
             # 'last_in': forms.HiddenInput(),  # might not be needed
             'updated': forms.HiddenInput(),
-            'created': forms.HiddenInput(),
+            'id': forms.HiddenInput()
         }
 
     # def clean_name(self):

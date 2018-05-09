@@ -1,0 +1,29 @@
+{% extends 'l-bar.html' %}
+
+{%  block content %}
+
+<p class="typography-display-4">{{ customer.name }}</p>
+<a href="/web/customer/form/{{ customer.id }}?action=edit">
+    <button class="btn btn-float btn-primary my-1" type="button"><i class="material-icons">edit</i></button>
+</a>
+
+<form action="/web/customer/form/{{ customer.id }}/" method="POST">
+    {% csrf_token %}
+    <input type="hidden" id="action" name="action" value="delete">
+    <button class="btn btn-float btn-danger my-1" type="submit"><i class="material-icons">delete</i></button>
+</form>
+
+<p class="typography-display-1">{{ customer.company|default:'' }}</p>
+<span class="address">
+{{ customer.address }} </br>
+{{ customer.city }} WI, {{ customer.zip }}
+</span>
+
+<span class="float-right">
+Balance: {{ customer.balance }}
+Folder location: {{ customer.folder_location }}
+Last Updated: {{ customer.updated }}
+</span>
+
+{#    Table#}
+{% endblock %}
