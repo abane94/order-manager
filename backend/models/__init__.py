@@ -8,3 +8,4 @@
 
 from .AbstractOrderModel import AbstractOrder
 from .CustomerModel import CustomerModel
+from .PrintOrderModel import PrintOrder

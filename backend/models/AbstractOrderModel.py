@@ -6,6 +6,9 @@ class AbstractOrder(models.Model):
     # class Meta:
     #     abstract = True
 
+    def __str__(self):
+        return str(self.id)
+
     order_type = ''
 
     QUOTE = 'QUOTE'
@@ -24,19 +27,19 @@ class AbstractOrder(models.Model):
     description = models.TextField()
     status = models.CharField(choices=status_choices, max_length=10)
     customer = models.ForeignKey(CustomerModel, on_delete=models.CASCADE)
-    quote = models.IntegerField()   # dollars
-    quote_date = models.DateField()
-    order_date = models.DateField()
-    due_date = models.DateField()
+    quote = models.IntegerField(default=0)   # dollars
+    quote_date = models.DateField(blank=True, null=True)
+    order_date = models.DateField(blank=True, null=True)
+    due_date = models.DateField(blank=True, null=True)
     # completed / archived date ?
-    deposite = models.IntegerField() # cents
-    final_price = models.IntegerField # cents
-    balance = models.IntegerField() # cents
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)  # TODO: import and add User Model
-    notes = models.TextField()
+    deposite = models.IntegerField(default=0) # cents
+    final_price = models.IntegerField(default=0) # cents
+    balance = models.IntegerField(default=0) # cents
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)  # TODO: import and add User Model
+    notes = models.TextField(blank=True, null=True)
     need_approval = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)  # TODO: default?
-    payment_due_date = models.DateField()
+    payment_due_date = models.DateField(blank=True, null=True)
     updated = models.DateField()
     created = models.DateField()
 

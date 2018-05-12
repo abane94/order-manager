@@ -6,6 +6,19 @@ body {
     overflow: hidden;
 }
 
+body::-webkit-scrollbar {
+    width: 1em;
+}
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
 #main_content {
     background-color: lightgray;
     height: 100%;
@@ -20,6 +33,7 @@ body {
 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
+    overflow: scroll;
 }
 
 .form_container {
@@ -28,5 +42,5 @@ body {
 }
 
 form label{
-    font-size: 20pt;
+    font-size: 16pt;
 }

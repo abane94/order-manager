@@ -19,9 +19,9 @@
             {% for order in orders %}
                 <tr>
                     <a href="some/path?id={{ order.id }}">
-                      <th scope="col">{{ order.customer }}</th>
-                      <th scope="col">{{ order.name }}</th>
-                      <th scope="col">{{ order.description }}</th> <!-- TODO: put a length filter on this-->
+                      <tr scope="col">{{ order.customer }}</tr>
+                      <tr scope="col">{{ order.name }}</tr>
+                      <tr scope="col">{{ order.description }}</tr> <!-- TODO: put a length filter on this-->
                     </a>
                 </tr>
             {% endfor %}
@@ -52,11 +52,11 @@
             {% for order in followups %}
                 <tr>
                     <a href="customer?id={{ order.id }}">
-                      <th scope="col">{{ order.customer }}</th>
-                      <th scope="col">{{ order.name }}</th>
-                      <th scope="col">{{ order.customer.phone }}</th> <!-- TODO: put a blank if false filter on this-->
-                      <th scope="col">{{ order.customer.email }}</th> <!-- TODO: put a blank if false filter on this-->
-{#                      <th scope="col"><input type="checkbox" value="false" onclick="somefunction()"/></th>#}
+                      <td scope="col">{{ order.customer }}</td>
+                      <td scope="col">{{ order.name }}</td>
+                      <td scope="col">{{ order.customer.phone }}</td> <!-- TODO: put a blank if false filter on this-->
+                      <td scope="col">{{ order.customer.email }}</td> <!-- TODO: put a blank if false filter on this-->
+{#                      <td scope="col"><input type="checkbox" value="false" onclick="somefunction()"/></td>#}
                     </a>
                 </tr>
             {% endfor %}

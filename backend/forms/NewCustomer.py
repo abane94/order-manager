@@ -11,17 +11,17 @@ class NewCustomerForm(forms.ModelForm):
         exclude = ("id", "last_in", "last_user")
 
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
-            'company': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
-            'phone': forms.TextInput(attrs={'type': 'tel', 'class': 'form-control form-control-lg'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control form-control-lg'}),
-            'address': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
-            'city': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
-            'zip': forms.NumberInput(attrs={'class': 'form-control form-control-lg'}),
-            'balance': forms.NumberInput(attrs={'class': 'form-control form-control-lg'}),
+            'name': forms.TextInput(attrs={'class': 'form-control form-control-md'}),
+            'company': forms.TextInput(attrs={'class': 'form-control form-control-md'}),
+            'phone': forms.TextInput(attrs={'type': 'tel', 'class': 'form-control form-control-md'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control form-control-md'}),
+            'address': forms.TextInput(attrs={'class': 'form-control form-control-md'}),
+            'city': forms.TextInput(attrs={'class': 'form-control form-control-md'}),
+            'zip': forms.NumberInput(attrs={'class': 'form-control form-control-md'}),
+            'balance': forms.NumberInput(attrs={'class': 'form-control form-control-md'}),
 
-            'folder_location': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
-            'needs_followup': forms.CheckboxInput(attrs={'class': 'form-control form-control-lg'}),  # attrs={'class': 'form-control'}
+            'folder_location': forms.TextInput(attrs={'class': 'form-control form-control-md'}),
+            'needs_followup': forms.CheckboxInput(attrs={'class': 'form-control form-control-md'}),  # attrs={'class': 'form-control'}
 
             # 'last_user': forms.HiddenInput(),
             # 'last_in': forms.HiddenInput(),  # might not be needed

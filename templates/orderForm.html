@@ -1,0 +1,19 @@
+{% extends 'l-bar.html' %}
+
+{%  block content %}
+
+<p class="typography-display-3">{{ action|upper }} {{ type|upper }} ORDER</p>
+<div class="form_container">
+    <form method="post" action="/web/order/{{ type }}/form{% if id %}/{{ id }}{% endif %}/">
+        {%  csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="hidden" value="{{ action }}" name="action" id="action"/>
+        <input type="submit"/>
+    </form>
+</div>
+
+
+
+{% endblock %}

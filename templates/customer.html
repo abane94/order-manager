@@ -13,6 +13,18 @@
     <button class="btn btn-float btn-danger my-1" type="submit"><i class="material-icons">delete</i></button>
 </form>
 
+
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      New
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="/web/order/print/form?action=new&customer={{ customer.id }}">Customer</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+
 <p class="typography-display-1">{{ customer.company|default:'' }}</p>
 <span class="address">
 {{ customer.address }} </br>

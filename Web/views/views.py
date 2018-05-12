@@ -13,7 +13,6 @@ home = HomeService()
 customers = CustomerService()
 
 
-
 def index(req):
     # do some auth stuff
     followup_page = int(req.GET.get('followup_page', 0))

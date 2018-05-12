@@ -3,7 +3,7 @@
 {%  block content %}
 <p class="typography-display-3">{{ action|upper }} CUSTOMER</p>
 <div class="form_container">
-    <form method="post" action="/web/customer/form/{{ id|default:"" }}/">
+    <form method="post" action="/web/customer/form{% if id %}/{{ id }}{% endif %}/">
         {%  csrf_token %}
         <table>
             {{ form.as_table }}
