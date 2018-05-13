@@ -18,11 +18,11 @@
         <tbody>
             {% for order in orders %}
                 <tr>
-                    <a href="some/path?id={{ order.id }}">
-                      <tr scope="col">{{ order.customer }}</tr>
-                      <tr scope="col">{{ order.name }}</tr>
-                      <tr scope="col">{{ order.description }}</tr> <!-- TODO: put a length filter on this-->
-                    </a>
+                    <td scope="col">
+                        <a href="/web/customer/{{ order.customer.id }}">{{ order.customer.name }}</a>
+                    </td>
+                    <td scope="col"><a href="/web/order/{{ order.order_type }}/{{ order.id }}">{{ order.name }}</a></td>
+                    <td scope="col">{{ order.description }}</td> <!-- TODO: put a length filter on this-->
                 </tr>
             {% endfor %}
         </tbody>

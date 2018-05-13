@@ -1,0 +1,42 @@
+{% extends 'l-bar.html' %}
+
+{%  block content %}
+
+<p class="typography-display-4">{{ order.name }} - {{ order.status }}</p>
+    <a href="/web/customer/{{ order.customer.id }}">
+        <p class="typography-display-1">{{ order.customer.name }}</p>
+    </a>
+
+<a href="/web/customer/form/{{ order.id }}?action=edit">
+    <button class="btn btn-float btn-primary my-1" type="button"><i class="material-icons">edit</i></button>
+</a>
+
+<form action="/web/customer/form/{{ order.id }}/" method="POST">
+    {% csrf_token %}
+    <input type="hidden" id="action" name="action" value="delete">
+    <button class="btn btn-float btn-danger my-1" type="submit"><i class="material-icons">delete</i></button>
+</form>
+<p>
+    {{ order.description }}
+</p>
+
+    {% block order_contents %}
+    {% endblock %}
+
+{% if order.status == 'QUOTE' or order.status == 'ARCHIVE' %}
+    <p>{{ order.quote }}</p>
+    <p>{{ order.quote_date }}</p>
+{% endif %}
+
+{% if order.status != 'QUOTE' %}
+    {{ order.final_price }}
+    {{ order.order_date }}
+    {{ order.due_date }}
+{% endif %}
+
+<p>
+    {{ order.notes }}
+</p>
+
+
+{% endblock %}

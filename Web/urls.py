@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from Web.views.views import index, CustomerActions, Customer
-from Web.views import PrintActions
+from Web.views import PrintActions, Print
 
 urlpatterns = [
     path('', index),
@@ -14,6 +14,6 @@ urlpatterns = [
 
     path('order/print/form/<int:id>/', PrintActions.as_view()),
     path('order/print/form/', PrintActions.as_view(), {"id": 0}),
-    # path('order/print/<int:id>/', Customer.as_view()),
-    # path('order/print/', Customer.as_view(), {'id': 0}),
+    path('order/print/<int:id>/', Print.as_view()),
+    path('order/print/', Print.as_view(), {'id': 0}),
 ]

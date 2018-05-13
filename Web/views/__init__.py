@@ -1,1 +1,1 @@
-from .printView import PrintActions
+from .printView import PrintActions, Print

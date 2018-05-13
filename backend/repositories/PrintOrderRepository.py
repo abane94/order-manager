@@ -2,5 +2,5 @@ from backend.models.PrintOrderModel import PrintOrder
 from .AbstractRepository import AbstractRopository
 
 
-class OrderRopository(AbstractRopository):
+class PrintOrderRepository(AbstractRopository):
     model = PrintOrder

@@ -4,6 +4,8 @@ from django.db import models
 
 class PrintOrder(AbstractOrder):
     order_type = 'print'
+    oder_type = models.CharField(default='print9')
+
 
     def __str__(self):
         return u'%d' % self.id

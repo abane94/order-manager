@@ -50,8 +50,8 @@ class HomeService():
 
     def get(self, quotes_page=0, followup_page=0, orders_page=0):
         ret = {}
-        # ret['quotes'], ret['more_quotes'] = self.recent_quotes(10, 10*quotes_page)
-        ret['orders'], ret['more_orders'] = self.active_orders(10, 10 * orders_page)
+        ret['orders'], ret['more_orders'] = self.recent_quotes(10, 10*quotes_page)
+        # ret['orders'], ret['more_orders'] = self.active_orders(10, 10 * orders_page)
         print(len(ret['orders']))  # TODO: remove
         if ret['more_orders']:
             ret['recent_next_link'] = 'followup_page=' + str(followup_page) + '&order_page=' + str(orders_page + 1)

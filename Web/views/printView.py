@@ -44,3 +44,15 @@ class PrintActions(View):
             form.save()
             return redirect('/web')
         pass
+
+
+class Print(View):
+
+    def get(self, req, id=0):
+        id = self.kwargs.get('id', False)
+        if not id:
+            return redirect('/web')
+            pass
+        order = prints.getById(id)
+
+        return render(req, 'print.html', {'order': order})

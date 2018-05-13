@@ -1,0 +1,22 @@
+{% extends 'order.html' %}
+
+{%  block order_contents %}
+
+    {{ order.double_sided }}
+    <span style="
+               height: 5px;
+               width: 5px;
+               background-color: {{ order.material_color }};
+            "></span>
+    {{ order.weight }}
+    {{ order.size }}
+    {{ order.original_size }}
+    {{ order.quantity }}
+    {{ order.material }}
+    {{ order.stapled }}
+    {{ order.padded }}
+    {{ order.folding }}
+    {{ order.collated }}
+    {{ order.scoring }}
+
+{% endblock %}
