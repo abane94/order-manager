@@ -4,7 +4,7 @@ from django.db import models
 
 class PrintOrder(AbstractOrder):
     order_type = 'print'
-    oder_type = models.CharField(default='print9')
+    # order_type = models.CharField(default='print', max_length=10)
 
 
     def __str__(self):

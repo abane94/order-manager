@@ -19,7 +19,9 @@ class NewPrintForm(forms.ModelForm):
                        'balance',
                        'need_approval',
                        'approved',
-                       'payment_due_date')
+                       'payment_due_date',
+                        'order_type'
+                   )
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control form-control-md'}),

@@ -2,9 +2,9 @@
 
 {%  block content %}
 
-<h1>Dashboard</h1>
+<h1>Print Dashboard</h1>
 
-<h3>Recent Orders</h3>
+<h3>Active Orders</h3>
 
     <table class="table table-hover table-dark table-sm">
         <thead>
@@ -27,37 +27,33 @@
             {% endfor %}
         </tbody>
 
-        {% if recent_prev_link %}
-            <a href="{{ recent_prev_link }}">Previous</a>
+        {% if orders_prev_link %}
+            <a href="{{ orders_prev_link }}">Previous</a>
         {% endif %}
-        {% if recent_next_link %}
-            <a class="float-right" href="{{ recent_next_link }}">Next</a>
+        {% if orders_next_link %}
+            <a class="float-right" href="{{ orders_next_link }}">Next</a>
         {% endif %}
     </table>
 
-<h3>Needs Followup</h3>
+<h3>Recent Quotes</h3>
 
     <table class="table table-hover table-dark table-sm">
         <thead>
             <tr>
                 <th scope="col">Customer</th>
                 <th scope="col">Order</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Email</th>
-{#                <th scope="col">Done</th>#}
+                <th scope="col">Notes</th>
             </tr>
         </thead>
 
         <tbody>
-            {% for order in followups %}
+            {% for order in quotes %}
                 <tr>
-                    <a href="customer?id={{ order.id }}">
-                      <td scope="col">{{ order.customer }}</td>
-                      <td scope="col">{{ order.name }}</td>
-                      <td scope="col">{{ order.customer.phone }}</td> <!-- TODO: put a blank if false filter on this-->
-                      <td scope="col">{{ order.customer.email }}</td> <!-- TODO: put a blank if false filter on this-->
-{#                      <td scope="col"><input type="checkbox" value="false" onclick="somefunction()"/></td>#}
-                    </a>
+                    <td scope="col">
+                        <a href="/web/customer/{{ order.customer.id }}">{{ order.customer.name }}</a>
+                    </td>
+                    <td scope="col"><a href="/web/order/{{ order.id }}">{{ order.name }}</a></td>
+                    <td scope="col">{{ order.description }}</td> <!-- TODO: put a length filter on this-->
                 </tr>
             {% endfor %}
         </tbody>
@@ -65,11 +61,11 @@
 
     </table>
     <div class="links">
-        {% if followup_prev_link %}
-            <a href="/web?{{ followup_prev_link }}">Previous</a>
+        {% if quotes_prev_link %}
+            <a href="/web?{{ quotes_prev_link }}">Previous</a>
         {% endif %}
-        {% if followup_next_link %}
-            <a class="float-right" href="/web?{{ followup_next_link }}">Next</a>
+        {% if quotes_next_link %}
+            <a class="float-right" href="/web?{{ quotes_next_link }}">Next</a>
         {% endif %}
     </div>
 

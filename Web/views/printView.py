@@ -51,8 +51,18 @@ class Print(View):
     def get(self, req, id=0):
         id = self.kwargs.get('id', False)
         if not id:
-            return redirect('/web')
+            # return redirect('/web')
+            quotes_page = int(req.GET.get('quotes_page', 0))
+            orders_page = int(req.GET.get('order_page', 0))
+            ctx = prints.get(quotes_page=quotes_page, orders_page=orders_page)
+            return render(req, 'printHome.html', ctx)
             pass
         order = prints.getById(id)
 
         return render(req, 'print.html', {'order': order})
+
+
+class PrintHome(View):  # or make this the case if no id is given
+
+    def get(self, req):
+        pass

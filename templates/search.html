@@ -1,0 +1,79 @@
+{% extends 'l-bar.html' %}
+
+{%  block content %}
+
+<h1>Search Results</h1>
+{#    TODO: FIX THIS #}
+{#    <form id="criteria" name="criteria" class="form-inline" action="/web/search/" method="get">#}
+{#        <input class="form-control mr-sm-2" type="search" value="{{ criteria }}" aria-label="Search">#}
+{#        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+{#    </form>#}
+
+<h3>Customers</h3>
+
+    <table class="table table-hover table-dark table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Company</th>
+                <th scope="col">email</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td scope="col">
+                        <a href="/web/customer/{{ customer.id }}">{{ customer.name }}</a>
+                    </td>
+                    <td scope="col">{{ customer.company }}</td>
+                    <td scope="col">{{ customer.email }}</td> <!-- TODO: put a length filter on this-->
+                </tr>
+            {% endfor %}
+        </tbody>
+
+{#        {% if orders_prev_link %}#}
+{#            <a href="{{ orders_prev_link }}">Previous</a>#}
+{#        {% endif %}#}
+{#        {% if orders_next_link %}#}
+{#            <a class="float-right" href="{{ orders_next_link }}">Next</a>#}
+{#        {% endif %}#}
+    </table>
+
+<h3>Orders</h3>
+
+    <table class="table table-hover table-dark table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">Order</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td scope="col">
+                        <a href="/web/customer/{{ order.customer.id }}">{{ order.customer.name }}</a>
+                    </td>
+                    <td scope="col"><a href="/web/order/{{ order.id }}">{{ order.name }}</a></td>
+                    <td scope="col">{{ order.description }}</td> <!-- TODO: put a length filter on this-->
+                    <td scope="col">{{ order.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+
+    </table>
+{#    <div class="links">#}
+{#        {% if quotes_prev_link %}#}
+{#            <a href="/web?{{ quotes_prev_link }}">Previous</a>#}
+{#        {% endif %}#}
+{#        {% if quotes_next_link %}#}
+{#            <a class="float-right" href="/web?{{ quotes_next_link }}">Next</a>#}
+{#        {% endif %}#}
+{#    </div>#}
+
+{% endblock %}

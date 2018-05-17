@@ -8,38 +8,54 @@
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="/web">Navbar</a>
 
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline" action="/web/search/" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" name="criteria" id="criteria" aria-label="Search">
 {#        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
     </form>
 
-    <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        New
-      </a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="/web/customer/form?action=new">Customer</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            New
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="/web/customer/form?action=new">Customer</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+    {% endif %}
 
-    <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Sign In and in and in
-      </a>
-      <form class="dropdown-menu p-4">
-          <div class="form-group">
-            <label for="exampleDropdownFormEmail2">Email address</label>
-            <input type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" style="color: black;">
+    {% if user.is_authenticated %}
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ user.username }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="/web/auth/password">Change Password</a>
+            <a class="dropdown-item" href="/web/auth/signout">Logout</a>
           </div>
-          <div class="form-group">
-            <label for="exampleDropdownFormPassword2">Password</label>
-            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password" style="color: black;">
-          </div>
-          <button type="submit" class="btn btn-primary">Sign in</button>
-    </form>
-    </div>
+        </div>
+    {% else %}
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sign In
+          </a>
+          <form action="/web/auth/signin/" method="POST" class="dropdown-menu p-4">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="exampleDropdownFormEmail2">Email address</label>
+                <input type="text" class="form-control" name="user" id="user" placeholder="email@example.com" style="color: black;">
+              </div>
+              <div class="form-group">
+                <label for="exampleDropdownFormPassword2">Password</label>
+                <input type="password" class="form-control" name="pass" id="pass" placeholder="Password" style="color: black;">
+              </div>
+              <input type="hidden" id="redirect" name="redirect" value="{{ request.get_full_path }}">
+              <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+        </div>
+    {% endif %}
 
 </nav>
 
@@ -57,9 +73,9 @@
 
     <ul class="navdrawer-nav">
       <li class="nav-item">
-        <a class="nav-link active" href="#">
+        <a class="nav-link active" href="/web/order/print/">
           <i class="material-icons mr-3">alarm_on</i>
-          Active with icon
+          Prints
         </a>
       </li>
 

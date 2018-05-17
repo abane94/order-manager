@@ -9,3 +9,4 @@
 from .AbstractOrderModel import AbstractOrder
 from .CustomerModel import CustomerModel
 from .PrintOrderModel import PrintOrder
+from .SignOrderModel import SignOrder

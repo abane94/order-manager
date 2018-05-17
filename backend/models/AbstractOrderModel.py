@@ -5,11 +5,18 @@ from .CustomerModel import CustomerModel
 class AbstractOrder(models.Model):
     # class Meta:
     #     abstract = True
+    order_type = ''
+    order_type = models.CharField(default=order_type, max_length=10, blank=True, null=False)
 
     def __str__(self):
         return str(self.id)
 
-    order_type = ''
+    def get_type(self):
+        if hasattr(self, 'printorder'):
+            return 'print'
+        elif hasattr(self, 'signorder'):
+            return 'sign'
+
 
     QUOTE = 'QUOTE'
     ORDER = 'ORDER'
