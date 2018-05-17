@@ -28,3 +28,28 @@ class Password(View):
 
     def post(self):
         pass
+
+
+class UserForm(View):
+    def test_func(self):
+        return self.request.user.is_superuser()
+
+    def get(self, req):
+        action = req.GET.get('action', '')
+        if action == 'update':
+            form = UserChangeForm(instance=User.objects.get(username=req.GET['username']))
+            return render(req, 'userform.html', {'form': form, 'action': 'update'})
+        else:
+            form = UserCreationForm()
+            return render(req, 'userform.html', {'form': form, 'action': 'new'})
+
+    def post(self, req):
+        action = req.POST.get('action', '')
+        if action == 'update':
+            form = UserChangeForm(req.POST, instance=User.objects.get(username=req.POST['username']))
+            form.save()
+            return redirect('/web/admin')
+        else:
+            form = UserCreationForm(req.POST)
+            form.save()
+            return redirect('/web/admin')

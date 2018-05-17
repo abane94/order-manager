@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from Web.views.views import index, CustomerActions, Customer
 from Web.views import PrintActions, Print, Order, Search
-from Web.views import Signin, Signout
+from Web.views import Signin, Signout, UserForm, AdminView
 from django.contrib.auth.views import PasswordChangeView
 
 urlpatterns = [
@@ -26,5 +26,9 @@ urlpatterns = [
     path('auth/signout/', Signout.as_view()),
     path('auth/password/', PasswordChangeView.as_view(success_url='/web', template_name='password.html')),
 
-    path('search/', Search.as_view())
+    path('search/', Search.as_view()),
+
+    path('user/', UserForm.as_view()),
+
+    path('admin/', AdminView.as_view())
 ]

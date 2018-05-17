@@ -92,6 +92,15 @@
           Link with icon
         </a>
       </li>
+
+    {% if user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="/web/admin">
+                <i class="material-icons mr-3">people</i>
+                Admin
+            </a>
+        </li>
+    {% endif %}
     </ul>
   </div>
 blafkjsdhfkjhdsjkfhs

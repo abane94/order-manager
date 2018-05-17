@@ -1,0 +1,17 @@
+{% extends 'l-bar.html' %}
+
+{%  block content %}
+<p class="typography-display-3">{{ action|capfirst }} User</p>
+<div class="form_container">
+    <form method="post" action="/web/user/">
+        {%  csrf_token %}
+        <table>
+            {{ form }}
+        </table>
+        <input type="hidden" name="action" value="{{ action }}">
+        <input type="submit"/>
+    </form>
+</div>
+
+
+{% endblock %}
