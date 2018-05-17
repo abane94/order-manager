@@ -59,5 +59,8 @@ class Customer(View):
             return redirect('/web')
             pass
         customer = customers.getById(id)
+        orders = customers.ordersOf(customer)
+        for order in orders:
+            print('hello')
 
-        return render(req, 'customer.html', {'customer': customer})
+        return render(req, 'customer.html', {'customer': customer, 'orders': orders})

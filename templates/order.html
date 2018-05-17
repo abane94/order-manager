@@ -2,41 +2,85 @@
 
 {%  block content %}
 
-<p class="typography-display-4">{{ order.name }} - {{ order.status }}</p>
+<p class="typography-display-3">{{ order.name }} - {{ order.status }}</p>
     <a href="/web/customer/{{ order.customer.id }}">
-        <p class="typography-display-1">{{ order.customer.name }}</p>
+        <p class="typography-display-2 inline">{{ order.customer.name }}</p>
     </a>
 
-<a href="/web/customer/form/{{ order.id }}?action=edit">
-    <button class="btn btn-float btn-primary my-1" type="button"><i class="material-icons">edit</i></button>
+<a class="inline" href="/web/customer/form/{{ order.id }}?action=edit">
+    <button class="btn btn-float btn-primary btn-sm" type="button"><i class="material-icons">edit</i></button>
 </a>
 
-<form action="/web/customer/form/{{ order.id }}/" method="POST">
+<form class="inline" action="/web/customer/form/{{ order.id }}/" method="POST">
     {% csrf_token %}
     <input type="hidden" id="action" name="action" value="delete">
-    <button class="btn btn-float btn-danger my-1" type="submit"><i class="material-icons">delete</i></button>
+    <button class="btn btn-float btn-danger btn-sm" type="submit"><i class="material-icons">delete</i></button>
 </form>
-<p>
+
+<div class="card" style="width:50%; margin:auto;">
+  <div class="card-header d-flex pr-0">
     {{ order.description }}
-</p>
+  </div>
+  <table class="table mb-0 table-sm table-striped">
+    <tbody>
 
-    {% block order_contents %}
-    {% endblock %}
+      {% block order_contents %}
+      {% endblock %}
 
-{% if order.status == 'QUOTE' or order.status == 'ARCHIVE' %}
-    <p>{{ order.quote }}</p>
-    <p>{{ order.quote_date }}</p>
-{% endif %}
+      {% if order.status == 'QUOTE' or order.status == 'ARCHIVE' %}
+          <tr>
+            <td>Quote</td>
+            <td>{{ order.quote }}</td>
+          </tr>
+          <tr>
+            <td>Quote Date</td>
+            <td>{{ order.quote_date }}</td>
+          </tr>
+      {% endif %}
 
-{% if order.status != 'QUOTE' %}
-    {{ order.final_price }}
-    {{ order.order_date }}
-    {{ order.due_date }}
-{% endif %}
+      {% if order.status != 'QUOTE' %}
+          {{ order.final_price }}
+          {{ order.order_date }}
+          {{ order.due_date }}
+          <tr>
+            <td>Final Price</td>
+            <td>{{ order.final_price }}</td>
+          </tr>
+          <tr>
+            <td>Order Date</td>
+            <td>{{ order.order_date }}</td>
+          </tr>
+          <tr>
+            <td>Due Date</td>
+            <td>{{ order.due_date }}</td>
+          </tr>
+      {% endif %}
 
-<p>
+      <!-- <tr>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr> -->
+
+    </tbody>
+  </table>
+  <hr class="my-0 w-100">
+  <div class="card-actions align-items-center" style="margin-top: 30px;">
     {{ order.notes }}
-</p>
+  </div>
+</div>
 
 
 {% endblock %}

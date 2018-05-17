@@ -2,19 +2,19 @@
 
 {%  block content %}
 
-<p class="typography-display-4">{{ customer.name }}</p>
-<a href="/web/customer/form/{{ customer.id }}?action=edit">
+<p class="typography-display-3 inline" style="margin-right:30px;margin-bottom:0;">{{ customer.name }}</p>
+<a class="inline" href="/web/customer/form/{{ customer.id }}?action=edit">
     <button class="btn btn-float btn-primary my-1" type="button"><i class="material-icons">edit</i></button>
 </a>
 
-<form action="/web/customer/form/{{ customer.id }}/" method="POST">
+<form class="inline" action="/web/customer/form/{{ customer.id }}/" method="POST">
     {% csrf_token %}
     <input type="hidden" id="action" name="action" value="delete">
     <button class="btn btn-float btn-danger my-1" type="submit"><i class="material-icons">delete</i></button>
 </form>
 
 
-<div class="dropdown">
+<div class="dropdown inline">
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       New
   </a>
@@ -26,16 +26,45 @@
 </div>
 
 <p class="typography-display-1">{{ customer.company|default:'' }}</p>
-<span class="address">
+<span class="address inline">
 {{ customer.address }} </br>
 {{ customer.city }} WI, {{ customer.zip }}
 </span>
 
-<span class="float-right">
-Balance: {{ customer.balance }}
-Folder location: {{ customer.folder_location }}
-Last Updated: {{ customer.updated }}
+<span class="float-right inline">
+Balance: {{ customer.balance }}<br>
+Folder location: {{ customer.folder_location }}<br>
+Last Updated: {{ customer.updated }}<br>
 </span>
+
+<p class="typography-display-1">Orders</p>
+<table class="table table-hover table-dark table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Order</th>
+            <th scope="col">Status</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for order in orders %}
+            <tr>
+                <td scope="col"><a href="/web/order/{{ order.id }}">{{ order.name }}</a></td>
+                <td scope="col">{{ order.status }}</td>
+                <td scope="col">{{ order.description }}</td> <!-- TODO: put a length filter on this-->
+            </tr>
+        {% endfor %}
+    </tbody>
+
+{#    {% if orders_prev_link %}#}
+{#        <a href="{{ orders_prev_link }}">Previous</a>#}
+{#    {% endif %}#}
+{#    {% if orders_next_link %}#}
+{#        <a class="float-right" href="{{ orders_next_link }}">Next</a>#}
+{#    {% endif %}#}
+</table>
+
 
 {#    Table#}
 {% endblock %}

@@ -1,22 +1,67 @@
 {% extends 'order.html' %}
 
-{%  block order_contents %}
+{% block order_contents %}
 
-    {{ order.double_sided }}
-    <span style="
-               height: 5px;
-               width: 5px;
-               background-color: {{ order.material_color }};
+{#    <span style="#}
+{#            height: 5px;#}
+{#            width: 5px;#}
+{#            background-color: {{ order.material_color }};#}
+{#            "></span>#}
+
+    <tr>
+        <td>Double Sided</td>
+        <td>{{ order.double_sided }}</td>
+    </tr>
+    <tr>
+        <td>Color</td>
+        <td><span style="
+            height: 10px;
+            width: 18px;
+            background-color: {{ order.material_color }};
             "></span>
-    {{ order.weight }}
-    {{ order.size }}
-    {{ order.original_size }}
-    {{ order.quantity }}
-    {{ order.material }}
-    {{ order.stapled }}
-    {{ order.padded }}
-    {{ order.folding }}
-    {{ order.collated }}
-    {{ order.scoring }}
+        </td>
+    </tr>
+    <tr>
+        <td>Weight</td>
+        <td>{{ order.weight }}</td>
+    </tr>
+
+    <tr>
+        <td>Size</td>
+        <td>{{ order.size }}</td>
+    </tr>
+    <tr>
+        <td>Original Size</td>
+        <td>{{ order.original_size }}</td>
+    </tr>
+    <tr>
+        <td>Quantity</td>
+        <td>{{ order.quantity }}</td>
+    </tr>
+    <tr>
+        <td>Material</td>
+        <td>{{ order.material }}</td>
+    </tr>
+
+    <tr>
+        <td>Stapled</td>
+        <td>{{ order.stapled }}</td>
+    </tr>
+    <tr>
+        <td>Padded</td>
+        <td>{{ order.padded }}</td>
+    </tr>
+    <tr>
+        <td>Folded</td>
+        <td>{{ order.folding }}</td>
+    </tr>
+    <tr>
+        <td>Collated</td>
+        <td>{{ order.collated }}</td>
+    </tr>
+    <tr>
+        <td>Scored</td>
+        <td>{{ order.scoring }}</td>
+    </tr>
 
 {% endblock %}

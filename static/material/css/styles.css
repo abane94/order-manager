@@ -44,3 +44,7 @@ body::-webkit-scrollbar-thumb {
 form label{
     font-size: 16pt;
 }
+
+.inline{
+    display: inline;
+}
