@@ -5,7 +5,7 @@ Logged in users can create, edit, and delete records.
 Admins (or superusers) can view all the users, as well as create more.
 
 ## Take a Tour
-A running example of this site can be found at ___
+A running example of this site can be found at [https://calm-plateau-71855.herokuapp.com/]
 Here try looking at the records displayed on the main page. then take a look at the side bar to view a dashboard for more specif types of orders. Try out the search bar!
 
 Now log in as:
