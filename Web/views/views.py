@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from backend.services import HomeService, CustomerService
 from datetime import datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth.models import User
 
@@ -20,7 +21,8 @@ def index(req):
     data = home.get(followup_page=followup_page, orders_page=orders_page)
     return render(req, 'home.html', data)
 
-class CustomerActions(View):
+
+class CustomerActions(View, LoginRequiredMixin):
 
     def get(self, req, id=0):
         action = req.GET.get('action', '')

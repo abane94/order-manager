@@ -30,7 +30,7 @@ class Password(View):
         pass
 
 
-class UserForm(View):
+class UserForm(View, UserPassesTestMixin):
     def test_func(self):
         return self.request.user.is_superuser()
 

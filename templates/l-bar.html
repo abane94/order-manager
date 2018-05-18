@@ -14,16 +14,9 @@
     </form>
 
     {% if user.is_authenticated %}
-        <div class="dropdown">
-          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            New
+          <a class="btn btn-secondary" href="/web/customer/form?action=new" role="button" id="dropdownMenuLink">
+            New Customer
           </a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="/web/customer/form?action=new">Customer</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
     {% endif %}
 
     {% if user.is_authenticated %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from backend.services import SignService, CustomerService
 from datetime import datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from backend.forms import NewSignForm, EditSignForm
 
@@ -9,7 +10,7 @@ signs = SignService()
 customers = CustomerService()
 
 
-class SignActions(View):
+class SignActions(View, LoginRequiredMixin):
 
     def get(self, req, id):
         action = req.GET.get('action', '')

@@ -3,27 +3,30 @@
 {%  block content %}
 
 <p class="typography-display-3 inline" style="margin-right:30px;margin-bottom:0;">{{ customer.name }}</p>
-<a class="inline" href="/web/customer/form/{{ customer.id }}?action=edit">
-    <button class="btn btn-float btn-primary my-1" type="button"><i class="material-icons">edit</i></button>
-</a>
 
-<form class="inline" action="/web/customer/form/{{ customer.id }}/" method="POST">
-    {% csrf_token %}
-    <input type="hidden" id="action" name="action" value="delete">
-    <button class="btn btn-float btn-danger my-1" type="submit"><i class="material-icons">delete</i></button>
-</form>
+{%  if user.is_authenticated %}
+    <a class="inline" href="/web/customer/form/{{ customer.id }}?action=edit">
+        <button class="btn btn-float btn-primary my-1" type="button"><i class="material-icons">edit</i></button>
+    </a>
+
+    <form class="inline" action="/web/customer/form/{{ customer.id }}/" method="POST">
+        {% csrf_token %}
+        <input type="hidden" id="action" name="action" value="delete">
+        <button class="btn btn-float btn-danger my-1" type="submit"><i class="material-icons">delete</i></button>
+    </form>
 
 
-<div class="dropdown inline">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      New
-  </a>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="/web/order/print/form?action=new&customer={{ customer.id }}">Print</a>
-    <a class="dropdown-item" href="/web/order/sign/form?action=new&customer={{ customer.id }}">Sign</a>
-{#    <a class="dropdown-item" href="#">Something else here</a>#}
-  </div>
-</div>
+    <div class="dropdown inline">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          New
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="/web/order/print/form?action=new&customer={{ customer.id }}">Print</a>
+        <a class="dropdown-item" href="/web/order/sign/form?action=new&customer={{ customer.id }}">Sign</a>
+    {#    <a class="dropdown-item" href="#">Something else here</a>#}
+      </div>
+    </div>
+{% endif %}
 
 <p class="typography-display-1">{{ customer.company|default:'' }}</p>
 <span class="address inline">

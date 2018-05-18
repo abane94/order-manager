@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from backend.services import PrintService, CustomerService
 from datetime import datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from backend.forms import NewPrintForm, EditPrintForm
 
@@ -9,7 +10,7 @@ prints = PrintService()
 customers = CustomerService()
 
 
-class PrintActions(View):
+class PrintActions(View, LoginRequiredMixin):
 
     def get(self, req, id):
         action = req.GET.get('action', '')
