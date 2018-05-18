@@ -2,21 +2,60 @@
 
 {%  block order_contents %}
 
-    {{ order.double_sided }}
-    <span style="
-               height: 5px;
-               width: 5px;
+    <tr>
+        <td>Double Sided</td>
+        <td>{{ order.double_sided }}</td>
+    </tr>
+    <tr>
+        <td>Material Color</td>
+        <td><span style="
+               height: 10px;
+               width: 18px;
                background-color: {{ order.material_color }};
             "></span>
-    {{ order.quantity }}
-    {{ order.width }}
-    {{ order.height }}
-    {{ order.material }}
-    {{ order.double_sided }}
-    {{ order.gromets }}
-    {{ order.sewing }}
-    {{ order.webbing }}
-    {{ order.tape }}
-    {{ order.corner_rounding }}
+        </td>
+    </tr>
+
+
+    <tr>
+        <td>Quantity</td>
+        <td>{{ order.quantity }}</td>
+    </tr>
+    <tr>
+        <td>Width</td>
+        <td>{{ order.width }}</td>
+    </tr>
+    <tr>
+        <td>Height</td>
+        <td>{{ order.height }}</td>
+    </tr>
+    <tr>
+        <td>Material</td>
+        <td>{{ order.material }}</td>
+    </tr>
+    <tr>
+        <td>Double Sided</td>
+        <td>{{ order.double_sided }}</td>
+    </tr>
+    <tr>
+        <td>Gromets</td>
+        <td>{{ order.gromets }}</td>
+    </tr>
+    <tr>
+        <td>Sewing</td>
+        <td>{{ order.sewing }}</td>
+    </tr>
+    <tr>
+        <td>Webbing</td>
+        <td>{{ order.webbing }}</td>
+    </tr>
+    <tr>
+        <td>Tape</td>
+        <td>{{ order.tape }}</td>
+    </tr>
+    <tr>
+        <td>Corner Rounding</td>
+        <td>{{ order.corner_rounding }}</td>
+    </tr>
 
 {% endblock %}
