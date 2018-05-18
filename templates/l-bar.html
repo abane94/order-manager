@@ -74,24 +74,24 @@
     <ul class="navdrawer-nav">
       <li class="nav-item">
         <a class="nav-link active" href="/web/order/print/">
-          <i class="material-icons mr-3">alarm_on</i>
+          <i class="material-icons mr-3">receipt</i>
           Prints
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">
-          <i class="material-icons mr-3">alarm_off</i>
-          Disabled with icon
+        <a class="nav-link active" href="/web/order/sign/">
+          <i class="material-icons mr-3">receipt</i>
+          Signs
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="material-icons mr-3">link</i>
-          Link with icon
-        </a>
-      </li>
+{#      <li class="nav-item">#}
+{#        <a class="nav-link" href="#">#}
+{#          <i class="material-icons mr-3">link</i>#}
+{#          Link with icon#}
+{#        </a>#}
+{#      </li>#}
 
     {% if user.is_superuser %}
         <li class="nav-item">

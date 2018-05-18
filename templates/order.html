@@ -7,11 +7,11 @@
         <p class="typography-display-2 inline">{{ order.customer.name }}</p>
     </a>
 
-<a class="inline" href="/web/customer/form/{{ order.id }}?action=edit">
+<a class="inline" href="/web/order/{{ type }}/form/{{ order.id }}?action=edit">
     <button class="btn btn-float btn-primary btn-sm" type="button"><i class="material-icons">edit</i></button>
 </a>
 
-<form class="inline" action="/web/customer/form/{{ order.id }}/" method="POST">
+<form class="inline" action="/web/order/{{ type }}/form/{{ order.id }}/" method="POST">
     {% csrf_token %}
     <input type="hidden" id="action" name="action" value="delete">
     <button class="btn btn-float btn-danger btn-sm" type="submit"><i class="material-icons">delete</i></button>

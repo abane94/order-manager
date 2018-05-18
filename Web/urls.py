@@ -3,6 +3,7 @@ from django.urls import path
 from Web.views.views import index, CustomerActions, Customer
 from Web.views import PrintActions, Print, Order, Search
 from Web.views import Signin, Signout, UserForm, AdminView
+from Web.views import Sign, SignActions
 from django.contrib.auth.views import PasswordChangeView
 
 urlpatterns = [
@@ -18,6 +19,11 @@ urlpatterns = [
     path('order/print/form/', PrintActions.as_view(), {"id": 0}),
     path('order/print/<int:id>/', Print.as_view()),
     path('order/print/', Print.as_view(), {'id': 0}),
+
+    path('order/sign/form/<int:id>/', SignActions.as_view()),
+    path('order/sign/form/', SignActions.as_view(), {"id": 0}),
+    path('order/sign/<int:id>/', Sign.as_view()),
+    path('order/sign/', Sign.as_view(), {'id': 0}),
 
     path('order/<int:id>/', Order.as_view()),
     path('order/', Order.as_view(), {'id': 0}),

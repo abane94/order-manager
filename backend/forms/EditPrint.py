@@ -3,18 +3,22 @@ from django import forms
 from .NewQuote import NewQuote
 
 
-class NewPrintForm(forms.ModelForm):
-    class Meta(NewQuote):
+class EditPrintForm(forms.ModelForm):
+
+    class Meta():
         model = PrintOrder
         fields = "__all__"
         exclude = ("id",
                        "last_in",
                        "last_user",
-                       "order_date",
-                       "due_date",
-                       'deposite',
-                       'final_price',
-                       'balance',
+                        "name",
+                   
+                       # "order_date",
+                       # "due_date",
+                       # 'deposite',
+                       # 'final_price',
+                       # 'balance',
+
                        'need_approval',
                        'approved',
                        'payment_due_date',
@@ -22,7 +26,6 @@ class NewPrintForm(forms.ModelForm):
                    )
 
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control form-control-md'}),
             'description': forms.Textarea(attrs={'class': 'form-control form-control-md'}),
             'quote': forms.NumberInput(attrs={'class': 'form-control form-control-md'}),
             'notes': forms.Textarea(attrs={'class': 'form-control form-control-md'}),
@@ -30,11 +33,23 @@ class NewPrintForm(forms.ModelForm):
             # 'last_user': forms.HiddenInput(),
             # 'last_in': forms.HiddenInput(),  # might not be needed
             'customer': forms.HiddenInput(),
-            'status': forms.HiddenInput(),
+            # 'status': forms.Input,
             'updated': forms.HiddenInput(),
             'created': forms.HiddenInput(),
             'quote_date': forms.HiddenInput(),
             'created_by': forms.HiddenInput(),
+
+            # 'statue': forms.TextInput(attrs={'type': 'date', 'class': 'form-control form-control-md'}),
+            #     required=True,
+            #     widget=forms.TextInput,
+            #     choices=PrintOrder.status_choices,
+            # ),
+
+            "order_date": forms.TextInput(attrs={'type': 'date', 'class': 'form-control form-control-md'}),
+            "due_date": forms.TextInput(attrs={'type': 'date', 'class': 'form-control form-control-md'}),
+            'deposite': forms.NumberInput(attrs={'class': 'form-control form-control-md'}),
+            'final_price': forms.NumberInput(attrs={'class': 'form-control form-control-md'}),
+            'balance': forms.NumberInput(attrs={'class': 'form-control form-control-md'}),
 
 
             'double_sided': forms.CheckboxInput(attrs={'class': 'form-control form-control-md'}),
@@ -54,3 +69,8 @@ class NewPrintForm(forms.ModelForm):
             # 'last_user': forms.HiddenInput(),
             # 'last_in': forms.HiddenInput(),  # might not be needed
         }
+
+        # status = forms.ComboField(
+        #     choices=PrintOrder.status_choices,
+        #     required=True
+        # )

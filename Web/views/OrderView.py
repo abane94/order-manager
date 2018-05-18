@@ -23,4 +23,4 @@ class Order(View):
         elif type == 'sign':
             pass
 
-        return render(req, type + '.html', {'order': order})
+        return render(req, type + '.html', {'order': order, 'type': type})
