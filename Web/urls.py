@@ -5,6 +5,9 @@ from Web.views import PrintActions, Print, Order, Search
 from Web.views import Signin, Signout, UserForm, AdminView
 from Web.views import Sign, SignActions
 from django.contrib.auth.views import PasswordChangeView
+from django.conf import settings
+import os
+
 
 urlpatterns = [
     path('', index),
@@ -30,7 +33,7 @@ urlpatterns = [
 
     path('auth/signin/', Signin.as_view()),
     path('auth/signout/', Signout.as_view()),
-    path('auth/password/', PasswordChangeView.as_view(success_url='/web', template_name='password.html')),
+    path('auth/password/', PasswordChangeView.as_view(success_url='/web', template_name=os.path.join(settings.BASE_DIR, 'templates', 'password.html'))),
 
     path('search/', Search.as_view()),
 

@@ -38,10 +38,10 @@ class UserForm(View, UserPassesTestMixin):
         action = req.GET.get('action', '')
         if action == 'update':
             form = UserChangeForm(instance=User.objects.get(username=req.GET['username']))
-            return render(req, 'userform.html', {'form': form, 'action': 'update'})
+            return render(req, 'userForm.html', {'form': form, 'action': 'update'})
         else:
             form = UserCreationForm()
-            return render(req, 'userform.html', {'form': form, 'action': 'new'})
+            return render(req, 'userForm.html', {'form': form, 'action': 'new'})
 
     def post(self, req):
         action = req.POST.get('action', '')
